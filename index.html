@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, height=device-height" />
+  <meta name="theme-color" content="rgb(39, 115, 201)" /> <!-- needed? -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <span>Kai STCP</span>
+  </header>
+  <div id="mainContainer">
+    <form id="idInputForm">
+      <input id="idInput" placeholder="Código da paragem" type="text">
+    </form>
+    <div id="selectContainer">
+      <select id="lines" data-selected="false">
+        <option>---</option>
+      </select>
+      <select id="directions" data-selected="false">
+        <option>---</option>
+      </select>
+      <select id="stops" data-selected="false">
+        <option>---</option>
+      </select>
+    </div>
+    <ul id="busList">
+    </ul>
+    <div id="loaderContainer">
+      <div id="loader"></div>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+
+</html>

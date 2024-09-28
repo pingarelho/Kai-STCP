@@ -1,0 +1,11 @@
+{
+  "name": "Kai STCP",
+  "type": "privileged",
+  "launch_path": "/index.html",
+  "icons": {
+    "128": "/icon.png"
+  },
+  "permissions": {
+    "systemXHR": ""
+  }
+}
