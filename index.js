@@ -1,6 +1,7 @@
 let xhr;
 const form = document.getElementById("idInputForm");
 const input = document.getElementById("idInput");
+let backspaceTimer;
 let lines, directions, stops;
 const linesDropdown = document.getElementById("lines");
 const directionsDropdown = document.getElementById("directions");
@@ -18,12 +19,13 @@ function init() {
       lines = e.target.response.records;
       populateDropdown(linesDropdown, lines, "description");
     })
-    .catch(e => {
+    .catch(() => {
       showErrorAlert();
     });
 
   form.addEventListener("submit", onSubmit);
   document.addEventListener("keydown", onKeyDown);
+  document.addEventListener("keyup", onKeyUp);
   input.focus();
 }
 
@@ -52,6 +54,17 @@ function onKeyDown(event) {
     case "Enter":
       if (input !== focusedElement) getSelectedDropdown().focus();
       break;
+    case "Backspace":
+      backspaceTimer = setTimeout(() => {
+        window.close();
+      }, 750);
+      break;
+  }
+}
+
+function onKeyUp(event) {
+  if (event.key === "Backspace" && backspaceTimer) {
+    clearTimeout(backspaceTimer);
   }
 }
 
@@ -69,7 +82,7 @@ function onSubmit(event) {
       loader.style.display = "none";
       renderBusList(busList);
     })
-    .catch(e => {
+    .catch(() => {
       showErrorAlert();
     });
 }
@@ -162,7 +175,7 @@ function onLineChange() {
       directions = e.target.response.records;
       populateDropdown(directionsDropdown, directions, "descr_dir");
     })
-    .catch(e => {
+    .catch(() => {
       showErrorAlert();
     });
 }
@@ -178,7 +191,7 @@ function onDirectionChange() {
       stops = e.target.response.records;
       populateDropdown(stopsDropdown, stops, "name");
     })
-    .catch(e => {
+    .catch(() => {
       showErrorAlert();
     });
 }
